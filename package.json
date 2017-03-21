@@ -1,0 +1,14 @@
+{
+  "name": "algorithms-practice",
+  "version": "1.0.0",
+  "description": "Algorithm and data structure practice",
+  "repository": "",
+  "devDependencies": {
+    "jasmine": "^2.5.3"
+  },
+  "scripts": {
+    "test": "jasmine"
+  },
+  "author": "Daniel Colson",
+  "license": "ISC"
+}
