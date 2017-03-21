@@ -10,5 +10,8 @@
     "test": "jasmine"
   },
   "author": "Daniel Colson",
-  "license": "ISC"
+  "license": "ISC",
+  "jshintConfig": {
+    "esversion": 6
+  }
 }
