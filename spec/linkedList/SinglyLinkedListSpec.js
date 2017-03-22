@@ -14,14 +14,14 @@ describe('SinglyLinkedList',  () => {
   describe('findAt', () => {
     beforeEach(() => { populate(list); });
 
-    it('returns the value for a given index', () => {
+    it('returns the link for a given index', () => {
       list.push('c');
-      expect(list.findAt(0)).toBe('a');
-      expect(list.findAt(1)).toBe('b');
-      expect(list.findAt(2)).toBe('c');
+      expect(list.findAt(0)).toHaveValue('a');
+      expect(list.findAt(1)).toHaveValue('b');
+      expect(list.findAt(2)).toHaveValue('c');
     });
 
-    context('when negative index', () => {
+    context('when index is negative', () => {
       it('raises an error', () => {
         expect(() => {
           list.findAt(-1);
@@ -29,7 +29,7 @@ describe('SinglyLinkedList',  () => {
       });
     });
 
-    context('when no element at the index', () => {
+    context('when no link at the index', () => {
       it('raises an error', () => {
         expect(() => {
           list.findAt(2);
@@ -39,12 +39,12 @@ describe('SinglyLinkedList',  () => {
   });
 
   describe('first', () => {
-    it('returns the first element without removing it', () => {
+    it('returns the first link without removing it', () => {
       populate(list);
 
-      expect(list.length).toBe(2);
-      expect(list.first()).toBe('a');
-      expect(list.length).toBe(2);
+      expect(list).toHaveLength(2);
+      expect(list.first()).toHaveValue('a');
+      expect(list).toHaveLength(2);
     });
 
     context('when empty', () => {
@@ -59,11 +59,19 @@ describe('SinglyLinkedList',  () => {
   describe('forEach', () => {
     beforeEach(() => { populate(list); });
 
-    it('calls the callback for each value', () => {
+    it('calls the callback with each link and index', () => {
       const spy = jasmine.createSpy('each');
       list.forEach(spy);
-      expect(spy).toHaveBeenCalledWith('a', 0);
-      expect(spy).toHaveBeenCalledWith('b', 1);
+
+      expect(spy).toHaveBeenCalledTimes(2);
+      expect(spy).toHaveBeenCalledWith(
+        jasmine.objectContaining({ value: 'a' }),
+        0
+      );
+      expect(spy).toHaveBeenCalledWith(
+        jasmine.objectContaining({ value: 'b' }),
+        1
+      );
     });
 
     it('returns the same list', () => {
@@ -88,12 +96,12 @@ describe('SinglyLinkedList',  () => {
   });
 
   describe('last', () => {
-    it('returns the last element without removing it', () => {
+    it('returns the last link without removing it', () => {
       populate(list);
 
-      expect(list.length).toBe(2);
-      expect(list.last()).toBe('b');
-      expect(list.length).toBe(2);
+      expect(list).toHaveLength(2);
+      expect(list.last()).toHaveValue('b');
+      expect(list).toHaveLength(2);
     });
 
     context('when empty', () => {
@@ -109,21 +117,21 @@ describe('SinglyLinkedList',  () => {
     beforeEach(() => { populate(list); });
 
     it('returns the length', () => {
-      expect(list.length).toBe(2);
+      expect(list).toHaveLength(2);
     });
   });
 
   describe('pop', () => {
-    it('removes and returns the last element', () => {
+    it('removes and returns the last link', () => {
       populate(list);
 
-      expect(list.length).toBe(2);
-      expect(list.last()).toBe('b');
+      expect(list).toHaveLength(2);
+      expect(list.last()).toHaveValue('b');
 
-      expect(list.pop()).toBe('b');
+      expect(list.pop()).toHaveValue('b');
 
-      expect(list.length).toBe(1);
-      expect(list.last()).toBe('a');
+      expect(list).toHaveLength(1);
+      expect(list.last()).toHaveValue('a');
     });
 
     context('when empty', () => {
@@ -138,9 +146,9 @@ describe('SinglyLinkedList',  () => {
   describe('push', () => {
     beforeEach(() => { populate(list); });
 
-    it('adds an element to the end', () => {
+    it('adds an link to the end', () => {
       list.push('pushed');
-      expect(list.last()).toBe('pushed');
+      expect(list.last()).toHaveValue('pushed');
     });
 
     it('returns the new length', () => {
@@ -151,15 +159,15 @@ describe('SinglyLinkedList',  () => {
   describe('removeAt', () => {
     beforeEach(() => { populate(list); });
 
-    it('removes the value for a given index', () => {
+    it('removes the link at a given index', () => {
       list.push('c');
-      expect(list.findAt(1)).toBe('b');
+      expect(list.findAt(1)).toHaveValue('b');
       list.removeAt(1);
-      expect(list.findAt(1)).toBe('c');
+      expect(list.findAt(1)).toHaveValue('c');
     });
 
-    it('returns the removed element', () => {
-      expect(list.removeAt(0)).toBe('a');
+    it('returns the removed link', () => {
+      expect(list.removeAt(0)).toHaveValue('a');
     });
 
     context('when negative index', () => {
@@ -170,7 +178,7 @@ describe('SinglyLinkedList',  () => {
       });
     });
 
-    context('when no element at the index', () => {
+    context('when no link at the index', () => {
       it('raises an error', () => {
         expect(() => {
           list.removeAt(2);
@@ -180,16 +188,16 @@ describe('SinglyLinkedList',  () => {
   });
 
   describe('shift', () => {
-    it('removes and returns the first element', () => {
+    it('removes and returns the first link', () => {
       populate(list);
 
-      expect(list.length).toBe(2);
-      expect(list.first()).toBe('a');
+      expect(list).toHaveLength(2);
+      expect(list.first()).toHaveValue('a');
 
-      expect(list.shift()).toBe('a');
+      expect(list.shift()).toHaveValue('a');
 
-      expect(list.length).toBe(1);
-      expect(list.first()).toBe('b');
+      expect(list).toHaveLength(1);
+      expect(list.first()).toHaveValue('b');
     });
 
     context('when empty', () => {
@@ -204,9 +212,9 @@ describe('SinglyLinkedList',  () => {
   describe('unshift', () => {
     beforeEach(() => { populate(list); });
 
-    it('adds an element to the beginning', () => {
+    it('adds an link to the beginning', () => {
       list.unshift('unshifted');
-      expect(list.first()).toBe('unshifted');
+      expect(list.first()).toHaveValue('unshifted');
     });
 
     it('returns the new length', () => {
