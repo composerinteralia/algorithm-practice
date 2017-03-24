@@ -1,5 +1,5 @@
-SinglyLinkedList = require('../../lib/linkedList/SinglyLinkedList.js');
-DoublyLinkedList = require('../../lib/linkedList/DoublyLinkedList.js');
+SinglyLinkedList = require('../../lib/linkedLists/SinglyLinkedList.js');
+DoublyLinkedList = require('../../lib/linkedLists/DoublyLinkedList.js');
 
 function populate(list) {
   list.push('a');
