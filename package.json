@@ -4,10 +4,12 @@
   "description": "Algorithm and data structure practice",
   "repository": "",
   "devDependencies": {
+    "eslint": "^3.18.0",
     "jasmine": "^2.5.3"
   },
   "scripts": {
-    "test": "jasmine"
+    "test": "jasmine",
+    "lint": "eslint spec/ lib/"
   },
   "author": "Daniel Colson",
   "license": "ISC",
