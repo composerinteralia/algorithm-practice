@@ -5,11 +5,12 @@
   "repository": "",
   "devDependencies": {
     "eslint": "^3.18.0",
-    "jasmine": "^2.5.3"
+    "jasmine-core": "^2.5.2"
   },
   "scripts": {
     "test": "jasmine",
-    "lint": "eslint spec/ lib/"
+    "lint": "eslint spec/ lib/",
+    "fix": "eslint spec/ lib/ --fix"
   },
   "author": "Daniel Colson",
   "license": "ISC",
