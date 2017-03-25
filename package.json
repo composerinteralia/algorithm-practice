@@ -2,7 +2,7 @@
   "name": "algorithms-practice",
   "version": "1.0.0",
   "description": "Algorithm and data structure practice",
-  "repository": "",
+  "repository": "https://github.com/composerinteralia/algorithm-practice",
   "devDependencies": {
     "eslint": "^3.18.0",
     "jasmine-core": "^2.5.2"
