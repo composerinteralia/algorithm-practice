@@ -2,8 +2,8 @@ const SinglyLinkedList = require('../../lib/linkedLists/SinglyLinkedList.js');
 const DoublyLinkedList = require('../../lib/linkedLists/DoublyLinkedList.js');
 
 function populate(list) {
-  list.push('a');
-  list.push('b');
+  list.push('a', 'a');
+  list.push('b', 'b');
 }
 
 [SinglyLinkedList, DoublyLinkedList].forEach((List) => {
@@ -17,7 +17,7 @@ function populate(list) {
       beforeEach(() => { populate(list); });
 
       it('returns the link for a given index', () => {
-        list.push('c');
+        list.push('c', 'c');
         expect(list.findAt(0)).toHaveValue('a');
         expect(list.findAt(1)).toHaveValue('b');
         expect(list.findAt(2)).toHaveValue('c');
@@ -149,12 +149,12 @@ function populate(list) {
       beforeEach(() => { populate(list); });
 
       it('adds an link to the end', () => {
-        list.push('pushed');
+        list.push('pushed', 'pushed');
         expect(list.last()).toHaveValue('pushed');
       });
 
       it('returns the new length', () => {
-        expect(list.push('pushed')).toBe(3);
+        expect(list.push('pushed', 'pushed')).toBe(3);
       });
     });
 
@@ -162,7 +162,7 @@ function populate(list) {
       beforeEach(() => { populate(list); });
 
       it('removes the link at a given index', () => {
-        list.push('c');
+        list.push('c', 'c');
         expect(list.findAt(1)).toHaveValue('b');
         list.removeAt(1);
         expect(list.findAt(1)).toHaveValue('c');
@@ -238,12 +238,12 @@ function populate(list) {
       beforeEach(() => { populate(list); });
 
       it('adds an link to the beginning', () => {
-        list.unshift('unshifted');
-        expect(list.first()).toHaveValue('unshifted');
+        list.unshift('unshifted', 'unshifted');
+        expect(list.first()).toHaveValue('unshifted', 'unshifted');
       });
 
       it('returns the new length', () => {
-        expect(list.unshift('unshifted')).toBe(3);
+        expect(list.unshift('unshifted', 'unshifted')).toBe(3);
       });
     });
   });
