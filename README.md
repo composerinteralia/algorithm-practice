@@ -9,3 +9,7 @@
 
 * [Node](./lib/trees/TreeNode.js)
 * [BFS and DFS](./lib/trees/searchable.js)
+
+## Caches
+
+* [LRUCache](./lib/caches/LRUCache.js)
