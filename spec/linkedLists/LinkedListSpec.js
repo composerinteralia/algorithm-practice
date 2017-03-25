@@ -189,6 +189,29 @@ function populate(list) {
       });
     });
 
+    describe('reverseEach', () => {
+      beforeEach(() => { populate(list); });
+
+      it('calls the callback with each link and index', () => {
+        const spy = jasmine.createSpy('each');
+        list.reverseEach(spy);
+
+        expect(spy).toHaveBeenCalledTimes(2);
+        expect(spy).toHaveBeenCalledWith(
+          jasmine.objectContaining({ value: 'b' }),
+          1
+        );
+        expect(spy).toHaveBeenCalledWith(
+          jasmine.objectContaining({ value: 'a' }),
+          0
+        );
+      });
+
+      it('returns the same list', () => {
+        expect(list.reverseEach(() => {})).toBe(list);
+      });
+    });
+
     describe('shift', () => {
       it('removes and returns the first link', () => {
         populate(list);
@@ -222,36 +245,6 @@ function populate(list) {
       it('returns the new length', () => {
         expect(list.unshift('unshifted')).toBe(3);
       });
-    });
-  });
-});
-
-describe('DoublyLinkedList', () => {
-  let list;
-  beforeEach(() => {
-    list = new DoublyLinkedList();
-  });
-
-  describe('reverseEach', () => {
-    beforeEach(() => { populate(list); });
-
-    it('calls the callback with each link and index', () => {
-      const spy = jasmine.createSpy('each');
-      list.reverseEach(spy);
-
-      expect(spy).toHaveBeenCalledTimes(2);
-      expect(spy).toHaveBeenCalledWith(
-        jasmine.objectContaining({ value: 'b' }),
-        1
-      );
-      expect(spy).toHaveBeenCalledWith(
-        jasmine.objectContaining({ value: 'a' }),
-        0
-      );
-    });
-
-    it('returns the same list', () => {
-      expect(list.reverseEach(() => {})).toBe(list);
     });
   });
 });
