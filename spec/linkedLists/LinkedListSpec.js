@@ -156,6 +156,12 @@ function populate(list) {
       it('returns the new length', () => {
         expect(list.push('pushed', 'pushed')).toBe(3);
       });
+
+      it('handles links', () => {
+        const link = new List.Link();
+        list.push(link);
+        expect(list.last()).toBe(link);
+      });
     });
 
     describe('removeAt', () => {
@@ -185,6 +191,43 @@ function populate(list) {
           expect(() => {
             list.removeAt(2);
           }).toThrowError('Nothing to see here');
+        });
+      });
+    });
+
+    describe('removeLink', () => {
+      beforeEach(() => { populate(list); });
+
+      it('removes the link from the list', () => {
+        const removed = list.first();
+        list.removeLink(removed);
+
+        expect(list).toHaveLength(1);
+        expect(removed.next).toBe(null);
+        if (removed.prev) {
+          expect(removed.prev).toBe(null);
+        }
+      });
+
+      it('connects the link\'s next and prev', () => {
+        const removed = list.last();
+        list.push('c', 'c');
+        list.removeLink(removed);
+
+        expect(list.first().next).toBe(list.last());
+        if (list.last().prev) {
+          expect(list.last().prev).toBe(list.first());
+        }
+      });
+
+      it('returns the same link', () => {
+        const removed = list.first();
+        expect(list.removeLink(removed)).toBe(removed);
+      });
+
+      context('when the link is not connected', () => {
+        it('returns false', () => {
+          expect(list.removeLink(new List.Link())).toBe(false);
         });
       });
     });
@@ -244,6 +287,12 @@ function populate(list) {
 
       it('returns the new length', () => {
         expect(list.unshift('unshifted', 'unshifted')).toBe(3);
+      });
+
+      it('handles links', () => {
+        const link = new List.Link();
+        list.unshift(link);
+        expect(list.first()).toBe(link);
       });
     });
   });

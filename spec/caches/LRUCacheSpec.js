@@ -42,6 +42,8 @@ describe('LRUCache', () => {
       context('when the cache is full', () => {
         it('ejects the oldest key', () => {
           cache.get('new');
+          cache.get('old');
+          cache.get('new');
           cache.get('newest');
           expect(cache.includes('old')).toBe(false);
         });
